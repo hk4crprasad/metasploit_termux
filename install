@@ -105,10 +105,10 @@ rm -r grpc-1.4.1 > /dev/null 2>&1
 
 
 cd $HOME/metasploit-framework
-bundle install -j5
+bundle install -j5 > /dev/null 2>&1
 
 $PREFIX/bin/find -type f -executable -exec termux-fix-shebang \{\} \; > /dev/null 2>&1
-rm ./modules/auxiliary/gather/http_pdf_authors.rb
+rm ./modules/auxiliary/gather/http_pdf_authors.rb > /dev/null 2>&1
 ln -s $HOME/metasploit-framework/msfconsole /data/data/com.termux/files/usr/bin/ > /dev/null 2>&1
 spinlong
 spinlong2
