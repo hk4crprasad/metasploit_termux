@@ -42,7 +42,7 @@ complete ()
         sleep 0.2
     done
 }
-extrating ()
+extracting ()
 {
     echo -e "\n"
     bar=" Extrating................... "
@@ -76,7 +76,7 @@ curl -LO https://github.com/hk4crprasad/metasploit_termux/raw/master/msf.tar.xz 
 complete |lolcat
 clear
 extracting
-tar -xf $HOME/msf.tar.gz
+tar -xf $HOME/msf.tar.xz
 mv $HOME/metasploit-framework-6.0.43 $HOME/metasploit-framework
 cd $HOME/metasploit-framework
 sed '/rbnacl/d' -i Gemfile.lock > /dev/null 2>&1
@@ -106,6 +106,5 @@ bundle install -j5
 $PREFIX/bin/find -type f -executable -exec termux-fix-shebang \{\} \; > /dev/null 2>&1
 rm ./modules/auxiliary/gather/http_pdf_authors.rb
 ln -s $HOME/metasploit-framework/msfconsole /data/data/com.termux/files/usr/bin/ > /dev/null 2>&1
-complete
 spinlong
 spinlong2
