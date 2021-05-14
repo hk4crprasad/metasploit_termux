@@ -1,0 +1,111 @@
+#!/data/data/com.termux/files/usr/bin/bash
+apt update > /dev/null 2>&1
+apt upgrade -y > /dev/null 2>&1
+apt install ruby -y > /dev/null 2>&1
+gem install lolcat > /dev/null 2>&1
+spinlong ()
+{
+    echo -e "\n"
+    bar=" Thanks for installing my tool................... "
+    barlength=${#bar}
+    i=0
+    while ((i < 100)); do
+        n=$((i*barlength / 100))
+        printf "\e[00;32m\r%-${barlength}s\e[00m" "${bar:0:n}"
+        ((i += RANDOM%5+2))
+        sleep 0.02
+    done
+}
+spinlong2 ()
+{
+    echo -e "\n"
+    bar=" enjoy the tool 🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏. "
+    barlength=${#bar}
+    i=0
+    while ((i < 100)); do
+        n=$((i*barlength / 100))
+        printf "\e[00;32m\r%-${barlength}s\e[00m" "${bar:0:n}"
+        ((i += RANDOM%5+2))
+        sleep 0.02
+    done
+}
+complete ()
+{
+    echo -e "\n"
+    bar=" Completing................... "
+    barlength=${#bar}
+    i=0
+    while ((i < 100)); do
+        n=$((i*barlength / 100))
+        printf "\e[00;32m\r%-${barlength}s\e[00m" "${bar:0:n}"
+        ((i += RANDOM%5+2))
+        sleep 0.2
+    done
+}
+extrating ()
+{
+    echo -e "\n"
+    bar=" Extrating................... "
+    barlength=${#bar}
+    i=0
+    while ((i < 100)); do
+        n=$((i*barlength / 100))
+        printf "\e[00;32m\r%-${barlength}s\e[00m" "${bar:0:n}"
+        ((i += RANDOM%5+2))
+        sleep 0.2
+    done
+}
+
+echo -e "\e[92m
+Metatasploit Termux ©\e[91m
+───▄▀▀▀▄▄▄▄▄▄▄▀▀▀▄───
+───█▒▒░░░░░░░░░▒▒█───
+────█░░█░░░░░█░░█────
+─▄▄──█░░░▀█▀░░░█──▄▄─
+█░░█─▀▄░░░░░░░▄▀─█░░█
+█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
+█░░╦─╦╔╗╦─╔╗╔╗╔╦╗╔╗░░█
+█░░║║║╠─║─║─║║║║║╠─░░█
+█░░╚╩╝╚╝╚╝╚╝╚╝╩─╩╚╝░░█
+█▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█
+ \e[m"
+ echo -e "\e[34m use At Your Own Risk \e[m"
+cd $HOME
+echo "Downloading " | lolcat
+curl -LO https://github.com/hk4crprasad/metasploit_termux/raw/master/msf.tar.xz > /dev/null 2>&1
+complete |lolcat
+clear
+extracting
+tar -xf $HOME/msf.tar.gz
+mv $HOME/metasploit-framework-6.0.43 $HOME/metasploit-framework
+cd $HOME/metasploit-framework
+sed '/rbnacl/d' -i Gemfile.lock > /dev/null 2>&1
+sed '/rbnacl/d' -i metasploit-framework.gemspec > /dev/null 2>&1
+gem install bundler
+bundle config build.nokogiri --use-system-libraries > /dev/null 2>&1
+
+complete
+echo "extrating working " |lolcat
+gem install nokogiri -- --use-system-libraries > /dev/null 2>&1
+ 
+sed 's|grpc (.*|grpc (1.4.1)|g' -i $HOME/metasploit-framework/Gemfile.lock > /dev/null 2>&1
+gem unpack grpc -v 1.4.1 > /dev/null 2>&1
+cd grpc-1.4.1
+curl -LO https://raw.githubusercontent.com/grpc/grpc/v1.4.1/grpc.gemspec > /dev/null 2>&1
+curl -L https://wiki.termux.com/images/b/bf/Grpc_extconf.patch -o extconf.patch > /dev/null 2>&1
+patch -p1 < extconf.patch > /dev/null 2>&1
+gem build grpc.gemspec > /dev/null 2>&1
+gem install grpc-1.4.1.gem > /dev/null 2>&1
+cd ..
+rm -r grpc-1.4.1 > /dev/null 2>&1
+
+
+cd $HOME/metasploit-framework
+bundle install -j5
+
+$PREFIX/bin/find -type f -executable -exec termux-fix-shebang \{\} \; > /dev/null 2>&1
+rm ./modules/auxiliary/gather/http_pdf_authors.rb
+ln -s $HOME/metasploit-framework/msfconsole /data/data/com.termux/files/usr/bin/ > /dev/null 2>&1
+complete
+spinlong
+spinlong2
