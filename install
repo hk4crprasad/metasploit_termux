@@ -55,7 +55,8 @@ extracting ()
         sleep 0.2
     done
 }
-
+banner ()
+{
 echo -e "\e[92m
 Metatasploit Termux ©\e[91m
 ───▄▀▀▀▄▄▄▄▄▄▄▀▀▀▄───
@@ -69,6 +70,7 @@ Metatasploit Termux ©\e[91m
 █░░╚╩╝╚╝╚╝╚╝╚╝╩─╩╚╝░░█
 █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█
  \e[m"
+}
  echo -e "\e[34m use At Your Own Risk \e[m"
 cd $HOME
 echo "Downloading " | lolcat
@@ -77,11 +79,13 @@ complete |lolcat
 clear
 extracting
 tar -xf $HOME/msf.tar.xz
-mv $HOME/metasploit-framework-6.0.43 $HOME/metasploit-framework
 cd $HOME/metasploit-framework
 sed '/rbnacl/d' -i Gemfile.lock > /dev/null 2>&1
 sed '/rbnacl/d' -i metasploit-framework.gemspec > /dev/null 2>&1
-gem install bundler
+gem install bundler > /dev/null 2>&1
+clear
+banner
+echo "Working" |lolcat
 bundle config build.nokogiri --use-system-libraries > /dev/null 2>&1
 
 complete
